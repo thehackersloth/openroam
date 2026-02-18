@@ -1,0 +1,172 @@
+---
+# OpenRoam Cluster Setup Playbook
+# Configures all nodes from fresh Raspberry Pi OS installation
+
+- name: Setup all nodes with common configuration
+  hosts: openroam
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install common packages
+      apt:
+        name:
+          - python3
+          - python3-pip
+          - python3-venv
+          - git
+          - curl
+          - wget
+          - htop
+          - vim
+          - tmux
+          - mosquitto-clients
+          - i2c-tools
+          - python3-smbus
+        state: present
+
+    - name: Enable I2C
+      lineinfile:
+        path: /boot/config.txt
+        line: "dtparam=i2c_arm=on"
+        create: yes
+
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Update /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ hostvars[item].ansible_host }} {{ item }} {{ item }}.{{ cluster_domain }}"
+      loop: "{{ groups['openroam'] }}"
+
+    - name: Install openroam-core
+      pip:
+        name: "git+https://github.com/openroam/openroam.git#subdirectory=software/openroam-core"
+        state: present
+      ignore_errors: yes
+
+- name: Setup Nav Node (Control Plane)
+  hosts: nav_nodes
+  become: yes
+  tasks:
+    - name: Install Mosquitto broker
+      apt:
+        name: mosquitto
+        state: present
+
+    - name: Configure Mosquitto
+      copy:
+        dest: /etc/mosquitto/conf.d/openroam.conf
+        content: |
+          listener 1883
+          listener 9001
+          protocol websockets
+          allow_anonymous true
+
+    - name: Start Mosquitto
+      systemd:
+        name: mosquitto
+        enabled: yes
+        state: started
+
+    - name: Install k3s server
+      shell: |
+        curl -sfL https://get.k3s.io | sh -s - server \
+          --write-kubeconfig-mode 644 \
+          --disable traefik \
+          --disable servicelb
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: Get k3s token
+      slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: k3s_token
+
+    - name: Store k3s token
+      set_fact:
+        k3s_join_token: "{{ k3s_token.content | b64decode | trim }}"
+
+- name: Setup Agent Nodes
+  hosts: nas_nodes:ai_nodes:net_nodes
+  become: yes
+  vars:
+    k3s_server: "{{ hostvars[groups['nav_nodes'][0]].ansible_host }}"
+    k3s_token: "{{ hostvars[groups['nav_nodes'][0]].k3s_join_token }}"
+  tasks:
+    - name: Install k3s agent
+      shell: |
+        curl -sfL https://get.k3s.io | K3S_URL=https://{{ k3s_server }}:6443 \
+          K3S_TOKEN={{ k3s_token }} sh -s - agent
+      args:
+        creates: /usr/local/bin/k3s
+      when: k3s_token is defined
+
+- name: Setup NAS Node
+  hosts: nas_nodes
+  become: yes
+  tasks:
+    - name: Install NAS packages
+      apt:
+        name:
+          - samba
+          - nfs-kernel-server
+        state: present
+
+    - name: Create media directory
+      file:
+        path: /mnt/nvme/media
+        state: directory
+        mode: '0755'
+
+- name: Setup AI Node
+  hosts: ai_nodes
+  become: yes
+  tasks:
+    - name: Install AI packages
+      apt:
+        name:
+          - python3-opencv
+          - ffmpeg
+        state: present
+
+- name: Setup Net Node
+  hosts: net_nodes
+  become: yes
+  tasks:
+    - name: Install network packages
+      apt:
+        name:
+          - hostapd
+          - dnsmasq
+        state: present
+
+    - name: Configure hostapd
+      copy:
+        dest: /etc/hostapd/hostapd.conf
+        content: |
+          interface=wlan0
+          driver=nl80211
+          ssid=OpenRoam
+          hw_mode=g
+          channel=7
+          wmm_enabled=0
+          macaddr_acl=0
+          auth_algs=1
+          ignore_broadcast_ssid=0
+          wpa=2
+          wpa_passphrase=changeme123
+          wpa_key_mgmt=WPA-PSK
+          rsn_pairwise=CCMP
+      notify: restart hostapd
+
+  handlers:
+    - name: restart hostapd
+      systemd:
+        name: hostapd
+        state: restarted

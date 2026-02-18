@@ -1,0 +1,48 @@
+# OpenRoam Nav Node Configuration
+# Raspberry Pi 5 Config
+
+# Enable I2C for HAT communication
+dtparam=i2c_arm=on
+dtparam=i2c_arm_baudrate=400000
+
+# Enable SPI
+dtparam=spi=on
+
+# Enable UARTs for GPS and VE.Direct
+enable_uart=1
+dtoverlay=uart3
+dtoverlay=uart4
+
+# GPU memory allocation
+gpu_mem=256
+
+# Enable PCIe for NVMe (if using)
+# dtparam=pciex1
+
+# Display settings for 7" touchscreen
+hdmi_force_hotplug=1
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt=1024 600 60 6 0 0 0
+hdmi_drive=2
+
+# Touch screen rotation (0, 90, 180, 270)
+display_rotate=0
+
+# Disable splash for faster boot
+disable_splash=1
+
+# Audio
+dtparam=audio=on
+
+# Fan control (PWM)
+dtoverlay=gpio-fan,gpiopin=14,temp=55000
+
+# RTC support (if using external RTC)
+# dtoverlay=i2c-rtc,ds3231
+
+# Camera support
+# dtoverlay=imx219
+
+# Custom HAT overlay
+# dtoverlay=openroam-nav-hat

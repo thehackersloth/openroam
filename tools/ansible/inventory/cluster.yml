@@ -1,0 +1,40 @@
+all:
+  vars:
+    ansible_user: openroam
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  children:
+    openroam:
+      vars:
+        cluster_name: openroam
+        cluster_domain: openroam.local
+
+      children:
+        nav_nodes:
+          hosts:
+            openroam-nav:
+              ansible_host: 192.168.4.10
+              node_role: nav
+              k3s_role: server
+
+        net_nodes:
+          hosts:
+            openroam-net:
+              ansible_host: 192.168.4.11
+              node_role: net
+              k3s_role: agent
+
+        nas_nodes:
+          hosts:
+            openroam-nas:
+              ansible_host: 192.168.4.12
+              node_role: nas
+              k3s_role: agent
+
+        ai_nodes:
+          hosts:
+            openroam-ai:
+              ansible_host: 192.168.4.13
+              node_role: ai
+              k3s_role: agent

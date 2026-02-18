@@ -1,0 +1,89 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+.venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# SvelteKit
+.svelte-kit/
+.vercel/
+
+# Build outputs
+software/openroam-dashboard/build/
+software/openroam-dashboard/.svelte-kit/
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# KiCad
+*.kicad_prl
+*-backups/
+fp-info-cache
+*.bak
+
+# Gerber outputs (can be regenerated)
+hardware/*/gerbers/
+
+# Test coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Secrets
+secrets/
+*.pem
+*.key
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Raspberry Pi images (too large for git)
+images/*.img
+images/*.img.gz
+images/*.img.xz

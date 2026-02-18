@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openroam-config
+  namespace: openroam
+data:
+  MQTT_HOST: "mosquitto.openroam.svc.cluster.local"
+  MQTT_PORT: "1883"
+  INFLUX_URL: "http://influxdb.openroam.svc.cluster.local:8086"
+  INFLUX_ORG: "openroam"
+  INFLUX_BUCKET: "telemetry"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: openroam-secrets
+  namespace: openroam
+type: Opaque
+stringData:
+  INFLUX_TOKEN: "change-me-in-production"
+  MQTT_PASSWORD: "change-me-in-production"

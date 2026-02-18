@@ -1,0 +1,87 @@
+Module,Component,Description,Qty,Unit Price,DigiKey PN,Mouser PN,DIY Alternative,Notes
+Nav HAT,MAX-M10S,u-blox GPS module,1,18.50,1909-MAX-M10S-ND,865-MAX-M10S,Build with MAX2769 RF frontend,"Multi-constellation GPS, 1.5m accuracy"
+Nav HAT,ICM-42688-P,6-axis IMU,1,4.25,1428-ICM-42688-P-ND,410-ICM-42688-P,MPU-6050 (cheaper) or build with discrete accelerometer/gyro,±16g accel ±2000°/s gyro
+Nav HAT,MMC5983MA,Magnetometer,1,3.50,1778-MMC5983MATR-ND,863-MMC5983MATR,HMC5883L or build with fluxgate sensor,Tilt-compensated compass
+Nav HAT,BME280,Environmental sensor,1,4.95,828-BME280-ND,262-BME280,Build with discrete temp/humidity/pressure sensors,"Temp, humidity, pressure"
+Nav HAT,STM32G071RBT6,MCU,1,4.85,497-STM32G071RBT6-ND,511-STM32G071RBT6,ATmega328P or ESP32-S3,"ARM Cortex-M0+, 128KB flash"
+Nav HAT,Ceramic patch antenna,GPS antenna,1,8.50,712-AGGP25T3T1I1A-ND,,DIY helical or ground plane antenna,25x25mm active antenna
+Nav HAT,40-pin GPIO header,Pi HAT connector,1,2.50,S7122-ND,649-67997-140HLF,Standard 2x20 header,
+Power HAT,INA228,Power monitor IC,4,6.50,296-INA228AIDGSR-ND,595-INA228AIDGSR,INA226 or build with discrete op-amp + shunt,"0.1% accuracy, 85V max"
+Power HAT,ADS1115,16-bit ADC,2,4.25,296-ADS1115IDGSR-ND,595-ADS1115IDGSR,Build with discrete ADC + voltage dividers,4-channel 16-bit
+Power HAT,ISO1541,I2C isolator,2,2.85,296-ISO1541DR-ND,595-ISO1541DR,Optocoupler-based isolation,2500V isolation
+Power HAT,STM32G071RBT6,MCU,1,4.85,497-STM32G071RBT6-ND,511-STM32G071RBT6,ATmega328P or ESP32-S3,
+Power HAT,VE.Direct cable,Victron interface,1,12.00,N/A,N/A,DIY with TTL UART + JST connector,3.3V UART
+Power HAT,Screw terminals 5mm,Power connections,8,0.45,ED2609-ND,651-1729128,Any 5mm pitch screw terminal,30A rated
+Tank HAT,ADS1115,16-bit ADC,2,4.25,296-ADS1115IDGSR-ND,595-ADS1115IDGSR,Build with resistor networks + op-amps,6 tank inputs
+Tank HAT,ESP32-S3-WROOM-1,WiFi MCU,1,3.50,1965-ESP32-S3-WROOM-1-N4-ND,356-ESP32S3WRM1N4,ESP8266 or nRF52840,WiFi for wireless tank sensors
+Tank HAT,Precision resistors,Calibration,10,0.15,A129749CT-ND,,DIY with potentiometers,0.1% tolerance
+Tank HAT,4-20mA receivers,Industrial sensors,2,2.50,296-35779-1-ND,,Build with 250Ω resistor + protection,Pressure sensor inputs
+Climate HAT,SHT40,Temp/humidity sensor,8,3.25,1649-SHT40-AD1B-R3TR-ND,403-SHT40-AD1B-R3,DHT22 or build with thermistor + capacitive humidity,±0.2°C accuracy
+Climate HAT,BME280,Environmental sensor,4,4.95,828-BME280-ND,262-BME280,Build discrete sensors,Backup zones
+Climate HAT,Relay module,HVAC control,1,8.00,N/A,N/A,Build with discrete MOSFETs or SSRs,4x 30A relays
+Climate HAT,STM32G071RBT6,MCU,1,4.85,497-STM32G071RBT6-ND,511-STM32G071RBT6,ATmega328P,
+Climate HAT,Diesel heater connector,Webasto/Espar,1,5.00,N/A,N/A,DIY with appropriate connector,W-Bus interface
+Vehicle HAT,MAX-M10S,GPS module,1,18.50,1909-MAX-M10S-ND,865-MAX-M10S,Share with Nav HAT or build own,Backup GPS
+Vehicle HAT,ICM-42688-P,6-axis IMU,1,4.25,1428-ICM-42688-P-ND,410-ICM-42688-P,MPU-6050,For leveling
+Vehicle HAT,BTS7960,H-bridge driver,4,4.50,N/A,N/A,Build with discrete MOSFETs + gate drivers,43A per channel
+Vehicle HAT,Potentiometer,Jack position,4,3.00,P3C3103-ND,,Any 10K linear pot,Position feedback
+Vehicle HAT,STM32G474RET6,MCU,1,6.85,497-STM32G474RET6TR-ND,511-STM32G474RET6TR,STM32F4 or ESP32,Motor control timers
+Safety HAT,MQ-6,Propane sensor,1,3.50,N/A,N/A,TGS2610 or build with catalytic bead,LPG/propane detection
+Safety HAT,MQ-7,CO sensor,1,3.50,N/A,N/A,TGS5042 or electrochemical sensor,Carbon monoxide
+Safety HAT,Photoelectric smoke IC,Smoke detection,2,4.00,N/A,N/A,Build with IR LED + photodiode,Smoke sensor
+Safety HAT,ATtiny85,Low-power MCU,1,1.50,ATTINY85-20SU-ND,556-ATTINY85-20SU,ATtiny13 or PIC10F,Always-on monitoring
+Safety HAT,Piezo buzzer,Alarm,1,1.25,102-1125-ND,,Any 85dB+ piezo,Loud alarm
+Router HAT,MT7921,WiFi 6 module,1,12.00,N/A,N/A,ESP32 WiFi (slower) or Realtek RTL8852BE,2x2 MIMO WiFi 6
+Router HAT,External antennas,WiFi antennas,2,4.50,931-1309-ND,,DIY cantenna or biquad,2.4/5GHz dual-band
+Router HAT,ESP32-S3,Management MCU,1,3.50,1965-ESP32-S3-WROOM-1-N4-ND,356-ESP32S3WRM1N4,ATmega328P,
+Cellular Interface,EM060K-GL,LTE Cat-6 modem,1,45.00,N/A,N/A,SIM7600G or EC25 (cheaper),Dual SIM LTE
+Cellular Interface,Dual SIM holder,SIM cards,1,2.50,N/A,N/A,2x single SIM holders,
+Cellular Interface,LTE antennas,MIMO antennas,4,6.00,N/A,N/A,DIY fractal antenna,4x4 MIMO
+LoRa Mesh HAT,SX1262,LoRa transceiver,1,12.00,N/A,N/A,RFM95W (SX1276) or build with discrete RF,915MHz ISM
+LoRa Mesh HAT,ESP32-S3,MCU,1,3.50,1965-ESP32-S3-WROOM-1-N4-ND,356-ESP32S3WRM1N4,ATmega328P + separate WiFi,Meshtastic compatible
+LoRa Mesh HAT,SMA connector,Antenna,1,1.50,CONSMA001-ND,,DIY ground plane antenna,915MHz
+Storage HAT,JMS583,USB-NVMe bridge,1,8.00,N/A,N/A,VL716 or ASM2362,USB 3.1 Gen 2
+Storage HAT,M.2 connector,NVMe slot,1,1.85,WM24527CT-ND,,Standard M.2 Key M,2230/2242/2260/2280
+Storage HAT,TPS62160,Buck regulator,1,2.65,296-TPS62160DSGR-ND,595-TPS62160DSGR,MP1584 module or discrete LDO,3.3V 1A
+AI Carrier,Hailo-8L,AI accelerator,1,25.00,N/A,N/A,Google Coral TPU or Intel NCS2,13 TOPS
+AI Carrier,CSI connector,Camera inputs,2,3.00,WM11384CT-ND,,Standard 22-pin FPC,4-lane MIPI
+AI Carrier,CM4 connector,If using CM4,1,6.50,N/A,N/A,Only needed for CM4 builds,100-pin connector
+Camera Interface,IMX219,Camera module,4,12.00,N/A,N/A,OV5640 or build with discrete sensor + lens,8MP wide-angle
+Camera Interface,CSI cables,FPC cables,4,2.50,N/A,N/A,Standard 15-pin FPC various lengths,
+Camera Interface,Video mux IC,Camera switch,1,8.00,N/A,N/A,Manual switch or software select,4:1 CSI mux
+Camera Interface,IR LEDs,Night vision,4,1.50,160-1747-1-ND,,850nm IR LEDs,Optional per camera
+Audio Interface,PCM5102A,DAC,1,4.50,N/A,N/A,Build with discrete R-2R DAC or use onboard PWM,32-bit I2S DAC
+Audio Interface,ESP32-S3,Bluetooth MCU,1,3.50,1965-ESP32-S3-WROOM-1-N4-ND,356-ESP32S3WRM1N4,BT module or CSR8645,Bluetooth 5.0
+Audio Interface,TPA3116D2,Amplifier,1,3.00,N/A,N/A,Build with discrete class-D or use LM386,2x50W class-D
+Engine Monitor HAT,MCP2515,CAN controller,1,2.50,MCP2515-I/ST-ND,579-MCP2515-I/ST,STM32 with built-in CAN or SPI to CAN IC,
+Engine Monitor HAT,MCP2562,CAN transceiver,1,1.50,MCP2562-E/MF-ND,579-MCP2562FD-E/MF,SN65HVD230 or build with discrete,
+Engine Monitor HAT,OBD-II connector,Vehicle plug,1,8.00,N/A,N/A,Standard J1962 female connector,
+Engine Monitor HAT,ADS1115,16-bit ADC,1,4.25,296-ADS1115IDGSR-ND,595-ADS1115IDGSR,Discrete ADC,Analog inputs
+Engine Monitor HAT,STM32G474RET6,MCU,1,6.85,497-STM32G474RET6TR-ND,511-STM32G474RET6TR,ESP32 with CAN,
+AM/FM Tuner HAT,Si4735-D60,AM/FM/SW receiver,1,6.50,N/A,N/A,TEA5767 (FM only) or build with discrete mixer + IF,
+AM/FM Tuner HAT,PCM5102A,Audio DAC,1,4.50,N/A,N/A,Onboard PWM or LM386,
+AM/FM Tuner HAT,Ferrite bar antenna,AM antenna,1,2.00,N/A,N/A,DIY with ferrite rod + wire,
+Dash Display Interface,7" IPS LCD,Display panel,1,35.00,N/A,N/A,Any HDMI display or build with raw panel + controller,1024x600 or higher
+Dash Display Interface,GT911,Touch controller,1,3.00,N/A,N/A,FT5316 or build capacitive sense,10-point touch
+Dash Display Interface,BH1750,Light sensor,1,1.50,N/A,N/A,Build with photoresistor + ADC,Auto-brightness
+Gaming HAT,FE1.1s,USB hub controller,1,1.50,N/A,N/A,GL850G or USB hub module,4-port USB 2.0
+Gaming HAT,PCM5102A,Audio DAC,1,4.50,N/A,N/A,PWM or LM386,Game audio
+Gaming HAT,MCP23017,GPIO expander,1,2.00,MCP23017-E/SP-ND,579-MCP23017-E/SP,PCF8574 or shift registers,16 GPIO
+Lighting HAT,PCA9685,PWM driver,1,4.50,N/A,N/A,Build with 555 timers or TLC5940,16-channel 12-bit PWM
+Lighting HAT,IRLZ44N,MOSFET,12,0.75,IRLZ44NPBF-ND,942-IRLZ44NPBFPBF,Any logic-level N-MOSFET,LED switching
+Inverter Interface,MAX3232,RS-232 transceiver,1,2.00,MAX3232EIDR-ND,700-MAX3232EIDR,Build with transistor inverters,Victron/Magnum protocol
+CB Radio Interface,WM8731,Audio codec,1,5.50,N/A,N/A,PCM2902 USB audio or discrete op-amp audio,24-bit audio
+CB Radio Interface,PTT relay,Push-to-talk,1,2.00,N/A,N/A,Optocoupler or MOSFET switch,
+GMRS Interface,WM8731,Audio codec,1,5.50,N/A,N/A,Same as CB Radio,
+Ham Radio Interface,CM108,USB audio codec,1,3.00,N/A,N/A,Build with discrete ADC/DAC,Soundcard interface
+Ham Radio Interface,SI5351,Clock generator,1,3.50,N/A,N/A,DDS module or discrete VFO,SDR TX (optional)
+SDR Receiver,RTL2832U + R820T2,SDR dongle,1,25.00,N/A,N/A,Build with direct sampling ADC + FPGA (advanced),RTL-SDR v3
+SDR Receiver,Bias-T,Active antenna,1,5.00,N/A,N/A,Build with inductor + capacitor,
+Common,40-pin GPIO header,Pi HAT connector,1,2.50,S7122-ND,649-67997-140HLF,Standard header,Per HAT
+Common,PCB fabrication,2-layer board,1,5.00,N/A,N/A,Etch own with PCB chemicals,Per module
+Common,Standoffs M2.5,HAT mounting,4,0.15,1772-3392-ND,,Any M2.5 standoffs,Per HAT
+Common,Capacitors 0.1uF,Decoupling,20,0.02,399-1168-1-ND,,Standard ceramic,Per module
+Common,Capacitors 10uF,Bulk,10,0.05,399-4906-1-ND,,Electrolytic or ceramic,Per module
+Common,Resistors kit,Various values,1,15.00,N/A,N/A,1% tolerance kit,Shared across build
+Common,LED indicators,Status LEDs,5,0.10,160-1130-1-ND,,Any 3mm/5mm LED,Per module
+Common,ESD protection,TVS diodes,10,0.25,SMBJ5.0A-TPMSCT-ND,,Any TVS array,Per external interface

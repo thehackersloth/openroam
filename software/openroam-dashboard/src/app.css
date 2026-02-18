@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply antialiased;
+	}
+
+	body {
+		@apply bg-gray-900 text-gray-100;
+	}
+}
+
+@layer components {
+	.card {
+		@apply bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700;
+	}
+
+	.card-header {
+		@apply text-sm font-medium text-gray-400 uppercase tracking-wider mb-2;
+	}
+
+	.btn {
+		@apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+	}
+
+	.btn-primary {
+		@apply bg-roam-600 hover:bg-roam-700 text-white;
+	}
+
+	.btn-secondary {
+		@apply bg-gray-700 hover:bg-gray-600 text-white;
+	}
+
+	.btn-danger {
+		@apply bg-red-600 hover:bg-red-700 text-white;
+	}
+
+	.gauge-value {
+		@apply text-4xl font-bold tabular-nums;
+	}
+
+	.gauge-label {
+		@apply text-sm text-gray-400;
+	}
+
+	.status-ok {
+		@apply text-green-400;
+	}
+
+	.status-warning {
+		@apply text-yellow-400;
+	}
+
+	.status-error {
+		@apply text-red-400;
+	}
+
+	.nav-link {
+		@apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors;
+	}
+
+	.nav-link.active {
+		@apply bg-roam-600/20 text-roam-400 border-l-2 border-roam-500;
+	}
+}
+
+/* Tank level bars */
+.tank-bar {
+	@apply h-4 rounded-full bg-gray-700 overflow-hidden;
+}
+
+.tank-fill {
+	@apply h-full rounded-full transition-all duration-500;
+}
+
+.tank-fill.fresh {
+	@apply bg-blue-500;
+}
+
+.tank-fill.grey {
+	@apply bg-gray-500;
+}
+
+.tank-fill.black {
+	@apply bg-amber-800;
+}
+
+.tank-fill.propane {
+	@apply bg-orange-500;
+}
+
+.tank-fill.fuel {
+	@apply bg-emerald-500;
+}
+
+/* Circular gauges */
+.circular-gauge {
+	position: relative;
+	width: 120px;
+	height: 120px;
+}
+
+.circular-gauge svg {
+	transform: rotate(-90deg);
+}
+
+.circular-gauge .track {
+	fill: none;
+	stroke: #374151;
+	stroke-width: 8;
+}
+
+.circular-gauge .fill {
+	fill: none;
+	stroke-width: 8;
+	stroke-linecap: round;
+	transition: stroke-dashoffset 0.5s ease;
+}
+
+.circular-gauge .value {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
