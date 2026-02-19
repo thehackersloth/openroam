@@ -164,50 +164,47 @@ export interface RoamKState {
 	lastUpdate: number;
 }
 
-// Default initial state with demo data for screenshots
+// Default initial state - populated by MQTT data from hardware
 const initialState: RoamKState = {
 	vehicle: {
-		location: { latitude: 35.6762, longitude: -105.9636, altitude: 2134 },
+		location: { latitude: 0, longitude: 0 },
 		speed: 0,
-		heading: 225,
-		odometer: 45230
+		heading: 0,
+		odometer: 0
 	},
 	power: {
 		batteries: {
-			house: { voltage: 13.2, current: -5.5, soc: 85, temp: 75, capacity_ah: 400 },
-			chassis: { voltage: 12.8, current: 0, soc: 98 }
+			house: { voltage: 0, current: 0, soc: 0 },
+			chassis: { voltage: 0, current: 0, soc: 0 }
 		},
-		solar: { voltage: 38.5, current: 11.7, watts: 450, daily_wh: 2850, lifetime_kwh: 1250.5 },
+		solar: { voltage: 0, current: 0, watts: 0, daily_wh: 0 },
 		shore: { connected: false, voltage: 0, amps: 0 },
 		alternator: { charging: false, amps: 0 }
 	},
 	tanks: {
-		fresh: { level: 72, gallons: 29, capacity: 40 },
-		grey: { level: 35, gallons: 14, capacity: 40 },
-		black: { level: 18, gallons: 7, capacity: 40 },
-		propane: { level: 65, pounds: 19.5 },
-		fuel: { level: 58, gallons: 29, capacity: 50, range_miles: 290 }
+		fresh: { level: 0 },
+		grey: { level: 0 },
+		black: { level: 0 },
+		propane: { level: 0 },
+		fuel: { level: 0 }
 	},
 	climate: {
-		interior: { temperature: 72, humidity: 45 },
-		exterior: { temperature: 85, humidity: 28 },
-		zones: {
-			living: { temperature: 72, setpoint: 70 },
-			bedroom: { temperature: 70, setpoint: 68 }
-		},
-		hvac: { mode: 'cool', running: true, fan_speed: 2 }
+		interior: { temperature: 0, humidity: 0 },
+		exterior: { temperature: 0, humidity: 0 },
+		zones: {},
+		hvac: { mode: 'off', running: false, fan_speed: 0 }
 	},
 	engine: {
 		rpm: 0,
-		coolant_temp: 185,
-		oil_temp: 195,
-		oil_pressure: 42,
-		trans_temp: 165,
+		coolant_temp: 0,
+		oil_temp: 0,
+		oil_pressure: 0,
+		trans_temp: 0,
 		throttle: 0,
 		load: 0,
 		fuel_rate: 0,
 		mpg_instant: 0,
-		mpg_average: 10.2,
+		mpg_average: 0,
 		dtc_codes: [],
 		check_engine: false
 	},
@@ -215,32 +212,23 @@ const initialState: RoamKState = {
 		smoke: { status: 'ok' },
 		co: { ppm: 0, status: 'ok' },
 		propane: { ppm: 0, status: 'ok' },
-		doors: { entry: 'closed', bay: 'closed' },
+		doors: {},
 		alarm: { armed: false, triggered: false }
 	},
 	maintenance: {
-		oil_life: 45,
-		next_oil_miles: 2500,
+		oil_life: 100,
+		next_oil_miles: 5000,
 		tire_rotation_due: false,
-		upcoming: [
-			{ service: 'Oil Change', due_miles: 47730, due_date: '2024-03-15' },
-			{ service: 'Tire Rotation', due_miles: 50000 }
-		]
+		upcoming: []
 	},
 	network: {
-		wifi_clients: 4,
-		cellular_signal: -78,
-		carrier: 'T-Mobile',
-		data_used_gb: 12.5,
-		starlink: { connected: true, speed_mbps: 185, obstructions: 2 }
+		wifi_clients: 0,
+		cellular_signal: 0,
+		carrier: '',
+		data_used_gb: 0
 	},
 	system: {
-		nodes: [
-			{ name: 'nav-node', online: true, cpu: 25, memory: 42, temp: 52, disk: 15 },
-			{ name: 'net-node', online: true, cpu: 18, memory: 35, temp: 48, disk: 8 },
-			{ name: 'nas-node', online: true, cpu: 12, memory: 55, temp: 45, disk: 62 },
-			{ name: 'ai-node', online: true, cpu: 45, memory: 68, temp: 58, disk: 22 }
-		]
+		nodes: []
 	},
 	lastUpdate: Date.now()
 };

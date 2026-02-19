@@ -250,7 +250,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Related Projects
 
-- [OpenHelm](https://github.com/openhelm/openhelm) - Marine vessel computing platform (same architecture)
+- [OpenHelm](https://github.com/thehackersloth/openhelm) - Marine vessel computing platform (same architecture)
 - [Signal K](https://signalk.org/) - Marine data exchange standard
 - [Meshtastic](https://meshtastic.org/) - LoRa mesh networking
 
