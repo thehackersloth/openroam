@@ -2,13 +2,17 @@
 	import { tanks } from '$lib/stores/roamk';
 	import { publishMqtt } from '$lib/stores/mqtt';
 
-	const tankConfig = {
+	const tankConfig: Record<string, { label: string; color: string; icon: string; capacity: number }> = {
 		fresh: { label: 'Fresh Water', color: 'bg-blue-500', icon: '💧', capacity: 40 },
 		grey: { label: 'Grey Water', color: 'bg-gray-500', icon: '🚿', capacity: 40 },
 		black: { label: 'Black Water', color: 'bg-amber-800', icon: '🚽', capacity: 40 },
 		propane: { label: 'Propane', color: 'bg-orange-500', icon: '🔥', capacity: 30 },
 		fuel: { label: 'Fuel', color: 'bg-emerald-500', icon: '⛽', capacity: 50 }
 	};
+
+	function getConfig(key: string) {
+		return tankConfig[key] || tankConfig.fresh;
+	}
 
 	function getLevelColor(level: number, tankType: string): string {
 		if (tankType === 'fresh' || tankType === 'propane' || tankType === 'fuel') {
@@ -40,17 +44,16 @@
 	<!-- Tank Grid -->
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 		{#each Object.entries($tanks) as [key, tank]}
-			{@const config = tankConfig[key as keyof typeof tankConfig]}
 			<div class="card">
 				<div class="card-header flex items-center gap-2">
-					<span>{config.icon}</span>
-					<span>{config.label}</span>
+					<span>{getConfig(key).icon}</span>
+					<span>{getConfig(key).label}</span>
 				</div>
 
 				<!-- Visual Tank -->
 				<div class="relative h-48 bg-gray-700 rounded-lg overflow-hidden my-4">
 					<div
-						class="absolute bottom-0 left-0 right-0 {config.color} transition-all duration-500"
+						class="absolute bottom-0 left-0 right-0 {getConfig(key).color} transition-all duration-500"
 						style="height: {tank.level}%"
 					>
 						<!-- Wave effect -->
@@ -70,12 +73,12 @@
 					<div>
 						<div class="text-gray-400">Current</div>
 						<div class="font-medium">
-							{tank.gallons ?? Math.round((tank.level / 100) * config.capacity)} gal
+							{tank.gallons ?? Math.round((tank.level / 100) * getConfig(key).capacity)} gal
 						</div>
 					</div>
 					<div>
 						<div class="text-gray-400">Capacity</div>
-						<div class="font-medium">{tank.capacity ?? config.capacity} gal</div>
+						<div class="font-medium">{tank.capacity ?? getConfig(key).capacity} gal</div>
 					</div>
 					{#if key === 'fuel' && tank.range_miles}
 						<div class="col-span-2">

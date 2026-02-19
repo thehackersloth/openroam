@@ -7,6 +7,17 @@
 
 OpenRoam is an open-source computing cluster for RVs, schoolies, vans, and all mobile living vehicles. It provides unified monitoring and control of all vehicle systems through a modern web dashboard.
 
+## Screenshots
+
+### Dashboard Overview
+![Dashboard](docs/screenshots/dashboard-main.png)
+
+### Power Management
+![Power Management](docs/screenshots/dashboard-power.png)
+
+### Tank Levels
+![Tank Levels](docs/screenshots/dashboard-tanks.png)
+
 ## Target Vehicles
 
 - Sprinter/Transit/ProMaster vans
